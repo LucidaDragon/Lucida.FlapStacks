@@ -6,6 +6,8 @@
     <PackageLicenseExpression>CC-BY-SA-4.0</PackageLicenseExpression>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageIcon>FlapStacks.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/LucidaDragon/Lucida.FlapStacks</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/LucidaDragon/Lucida.FlapStacks</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

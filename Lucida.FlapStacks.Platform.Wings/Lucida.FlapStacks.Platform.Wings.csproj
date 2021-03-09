@@ -6,6 +6,8 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>The Wings assembly source plugin for FlapStacks.</Description>
     <PackageIcon>FlapStacks.png</PackageIcon>
+    <RepositoryUrl>https://github.com/LucidaDragon/Lucida.FlapStacks</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/LucidaDragon/Lucida.FlapStacks</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

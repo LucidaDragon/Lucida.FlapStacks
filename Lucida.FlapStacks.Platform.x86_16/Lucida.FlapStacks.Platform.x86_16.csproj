@@ -6,6 +6,8 @@
     <Description>The 8086/x86-16 target plugin for FlapStacks.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageIcon>FlapStacks.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/LucidaDragon/Lucida.FlapStacks</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/LucidaDragon/Lucida.FlapStacks</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

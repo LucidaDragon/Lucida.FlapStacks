@@ -6,6 +6,8 @@
 		<Description>The core library for FlapStacks.</Description>
 		<PackageLicenseExpression>CC-BY-SA-4.0</PackageLicenseExpression>
 		<PackageIcon>FlapStacks.png</PackageIcon>
+		<RepositoryUrl>https://github.com/LucidaDragon/Lucida.FlapStacks</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/LucidaDragon/Lucida.FlapStacks</PackageProjectUrl>
 	</PropertyGroup>
 
 	<ItemGroup>
