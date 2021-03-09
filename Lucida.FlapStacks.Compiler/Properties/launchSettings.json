@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Lucida.FlapStacks.Compiler": {
+      "commandName": "Project",
+      "commandLineArgs": "-p Lucida.FlapStacks.Platform.Wings.dll Lucida.FlapStacks.Platform.x86_16.dll -d 0 boot -s wings -i input.txt -t 8086 -o data.bin"
+    }
+  }
+}

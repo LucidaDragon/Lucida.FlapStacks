@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard1.0</TargetFramework>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Description>The core library for FlapStacks.</Description>
+		<PackageLicenseExpression>CC-BY-SA-4.0</PackageLicenseExpression>
+		<PackageIcon>FlapStacks.png</PackageIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="FlapStacks.png">
+	    <Pack>True</Pack>
+	    <PackagePath></PackagePath>
+	  </None>
+	</ItemGroup>
+
+</Project>

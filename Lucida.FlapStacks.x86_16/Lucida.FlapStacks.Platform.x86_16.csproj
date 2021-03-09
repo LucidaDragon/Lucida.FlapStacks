@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <PackageLicenseExpression>CC-BY-SA-4.0</PackageLicenseExpression>
+    <Description>The 8086/x86-16 target plugin for FlapStacks.</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageIcon>FlapStacks.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lucida.FlapStacks\Lucida.FlapStacks.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Lucida.FlapStacks\FlapStacks.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

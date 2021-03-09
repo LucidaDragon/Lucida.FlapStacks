@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>flap</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lucida.FlapStacks.Platform.Wings\Lucida.FlapStacks.Platform.Wings.csproj" />
+    <ProjectReference Include="..\Lucida.FlapStacks.Plugins\Lucida.FlapStacks.Plugins.csproj" />
+    <ProjectReference Include="..\Lucida.FlapStacks.x86_16\Lucida.FlapStacks.Platform.x86_16.csproj" />
+  </ItemGroup>
+
+</Project>

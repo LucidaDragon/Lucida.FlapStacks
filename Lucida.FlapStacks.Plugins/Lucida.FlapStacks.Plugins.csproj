@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>The plugin support module for FlapStacks.</Description>
+    <PackageLicenseExpression>CC-BY-SA-4.0</PackageLicenseExpression>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageIcon>FlapStacks.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lucida.FlapStacks\Lucida.FlapStacks.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Lucida.FlapStacks\FlapStacks.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
