@@ -17,7 +17,7 @@
 
 		public override void Emit(Emitter8086 emitter, Stream stream)
 		{
-			stream.WriteByte((byte)(0x50 + (int)Target));
+			stream.WriteByte((byte)(0xB0 + (int)Target));
 			stream.WriteByte(Value);
 		}
 	}
