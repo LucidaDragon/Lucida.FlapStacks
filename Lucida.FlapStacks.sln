@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lucida.FlapStacks", "Lucida.FlapStacks\Lucida.FlapStacks.csproj", "{F62E44FC-A74B-431F-A51F-201BA4838176}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lucida.FlapStacks.Platform.x86_16", "Lucida.FlapStacks.x86_16\Lucida.FlapStacks.Platform.x86_16.csproj", "{26482C3D-4216-4622-9336-D052D460C7C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lucida.FlapStacks.Platform.x86_16", "Lucida.FlapStacks.Platform.x86_16\Lucida.FlapStacks.Platform.x86_16.csproj", "{26482C3D-4216-4622-9336-D052D460C7C1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lucida.FlapStacks.Compiler", "Lucida.FlapStacks.Compiler\Lucida.FlapStacks.Compiler.csproj", "{79B3450D-96E3-4971-9689-30B5C1F2769E}"
 EndProject
