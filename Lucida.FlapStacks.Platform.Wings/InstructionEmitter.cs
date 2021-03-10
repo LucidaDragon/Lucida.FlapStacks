@@ -100,7 +100,7 @@ namespace Lucida.FlapStacks.Platform.Wings
 		{
 			if (label is Label l)
 			{
-				Emit(new MarkLabelInst(l));
+				Emit(new MarkLabelInst($"L{l.Get()}"));
 			}
 		}
 

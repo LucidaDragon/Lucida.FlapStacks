@@ -27,7 +27,7 @@ namespace Lucida.FlapStacks.Platform.Wings
 			new LodInst(),
 			new LodsInst(),
 			new LshInst(),
-			new MarkLabelInst(),
+			new MarkLabelInst(null),
 			new MulInst(),
 			new NegInst(),
 			new NopInst(),
@@ -55,6 +55,18 @@ namespace Lucida.FlapStacks.Platform.Wings
 		public Instruction()
 		{
 			Arguments = new Value[ArgumentCount];
+		}
+
+		public virtual void PreEmit(Emitter emitter) { }
+
+		public virtual bool IsTarget(string targetName)
+		{
+			return false;
+		}
+
+		public virtual ulong GetTargetValue()
+		{
+			return 0;
 		}
 
 		public virtual bool IsValid(string keyword, int args)

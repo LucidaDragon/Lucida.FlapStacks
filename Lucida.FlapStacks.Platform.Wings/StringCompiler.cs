@@ -18,11 +18,16 @@ namespace Lucida.FlapStacks.Platform.Wings
 			for (int i = 0; i < rows.Length; i++)
 			{
 				var row = rows[i];
-				var inst = ParseInstruction(row);
+				var inst = ParseInstruction(row, instructions);
 
 				if (inst is null) throw new Exception($"Invalid instruction \"{row.Keyword} {string.Join(", ", row.Arguments)}\"");
 
 				instructions[i] = inst;
+			}
+
+			for (int i = 0; i < instructions.Length; i++)
+			{
+				instructions[i].PreEmit(emitter);
 			}
 
 			for (int i = 0; i < instructions.Length; i++)
@@ -45,9 +50,9 @@ namespace Lucida.FlapStacks.Platform.Wings
 			Lines = Encoding.UTF8.GetString(data, 0, data.Length).Split('\n');
 		}
 
-		private static Instruction ParseInstruction(Row row)
+		private static Instruction ParseInstruction(Row row, Instruction[] instructions)
 		{
-			var args = ParseArgs(row.Arguments);
+			var args = ParseArgs(row.Arguments, instructions);
 
 			if (args == null) return null;
 
@@ -64,7 +69,7 @@ namespace Lucida.FlapStacks.Platform.Wings
 			return null;
 		}
 
-		private static Value[] ParseArgs(string[] args)
+		private static Value[] ParseArgs(string[] args, Instruction[] instructions)
 		{
 			var result = new Value[args.Length];
 
@@ -86,7 +91,7 @@ namespace Lucida.FlapStacks.Platform.Wings
 				}
 				else
 				{
-					return null;
+					result[i] = new TargetLabel(arg, instructions);
 				}
 			}
 

@@ -2,17 +2,31 @@
 {
 	public class MarkLabelInst : Instruction
 	{
-		public override string Keyword => $"{Label.Name}:";
+		public override string Keyword => $"{Name}:";
 
-		private Label Label;
+		private Value Label;
+		private readonly string Name;
 
 		protected override int ArgumentCount => 0;
 
-		public MarkLabelInst() { }
-
-		public MarkLabelInst(Label label)
+		public MarkLabelInst(string name)
 		{
-			Label = label;
+			Name = name;
+		}
+
+		public override bool IsTarget(string targetName)
+		{
+			return Name == targetName;
+		}
+
+		public override ulong GetTargetValue()
+		{
+			return Label.Get();
+		}
+
+		public override void PreEmit(Emitter emitter)
+		{
+			Label = emitter.CreateLabel();
 		}
 
 		public override void Emit(Emitter emitter)
@@ -32,12 +46,7 @@
 
 		public override Instruction Create(string keyword, Value[] args)
 		{
-			var label = new MarkLabelInst
-			{
-				Label = new Label() { Name = keyword.Substring(1) }
-			};
-
-			return label;
+			return new MarkLabelInst(keyword.Substring(0, keyword.Length - 1));
 		}
 	}
 }
