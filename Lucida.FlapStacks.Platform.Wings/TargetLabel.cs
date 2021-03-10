@@ -1,4 +1,6 @@
-﻿namespace Lucida.FlapStacks.Platform.Wings
+﻿using System;
+
+namespace Lucida.FlapStacks.Platform.Wings
 {
 	public class TargetLabel : Value
 	{
@@ -24,7 +26,7 @@
 				}
 			}
 
-			return ulong.MaxValue;
+			throw new Exception($"Could not find target with name \"{Name}\".");
 		}
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using Lucida.FlapStacks.Platform.x86_16.Ops;
+using System;
 
 namespace Lucida.FlapStacks.Platform.x86_16
 {
@@ -199,7 +200,7 @@ namespace Lucida.FlapStacks.Platform.x86_16
 				address += (ulong)current.GetSize(this);
 			}
 
-			return ulong.MaxValue;
+			throw new Exception("Could not find operation address.");
 		}
 
 		public override void MarkLabel(Value value)
