@@ -10,6 +10,7 @@ namespace Lucida.FlapStacks.Compiler
 			new EmitterArg(),
 			new HelpArg(),
 			new IncludeArg(),
+			new NugetArg(),
 			new OutputArg(),
 			new ParserArg(),
 			new PluginArg(),

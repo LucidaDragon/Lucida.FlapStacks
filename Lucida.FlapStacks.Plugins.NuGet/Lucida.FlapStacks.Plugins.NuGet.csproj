@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>The nuget-based plugin support module for FlapStacks.</Description>
+    <PackageLicenseExpression>CC-BY-SA-4.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/LucidaDragon/Lucida.FlapStacks</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/LucidaDragon/Lucida.FlapStacks</RepositoryUrl>
+  </PropertyGroup>
+
+</Project>
