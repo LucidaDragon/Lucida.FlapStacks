@@ -76,6 +76,22 @@ namespace Lucida.FlapStacks.Platform.x86_16
 			Push(Register.AX);
 		}
 
+		public override void Bool()
+		{
+			Pop(Register.AX);
+			Emit(new OrOp(Register.AX, Register.AX));
+
+			var b0 = new PushImmOp(new Constant(0));
+
+			var a0 = new PushImmOp(new Constant(1));
+			var a1 = new JumpConditionalOp(Condition.NotCarry, (sbyte)b0.GetSize(this));
+
+			Emit(new JumpConditionalOp(Condition.Zero, (sbyte)(a0.GetSize(this) + a1.GetSize(this))));
+			Emit(a0);
+			Emit(a1);
+			Emit(b0);
+		}
+
 		public override void BranchEqual()
 		{
 			Branch(Condition.Equal);

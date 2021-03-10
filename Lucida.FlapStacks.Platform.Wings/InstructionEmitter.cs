@@ -26,6 +26,11 @@ namespace Lucida.FlapStacks.Platform.Wings
 			Emit(new AndInst());
 		}
 
+		public override void Bool()
+		{
+			Emit(new BoolInst());
+		}
+
 		public override void BranchEqual()
 		{
 			Emit(new IfeInst());

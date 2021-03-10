@@ -10,6 +10,7 @@ namespace Lucida.FlapStacks.Platform.Wings
 			new AddcInst(),
 			new AddInst(),
 			new AndInst(),
+			new BoolInst(),
 			new BppopInst(),
 			new BppushInst(),
 			new BpsetInst(),

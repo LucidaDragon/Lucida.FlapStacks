@@ -73,6 +73,11 @@
 		public abstract void Xor();
 
 		/// <summary>
+		/// Stack: Value{Any} -> Value{0..1}
+		/// </summary>
+		public abstract void Bool();
+
+		/// <summary>
 		/// Stack: -> Value{Any}
 		/// </summary>
 		public abstract void Push(Value value);
