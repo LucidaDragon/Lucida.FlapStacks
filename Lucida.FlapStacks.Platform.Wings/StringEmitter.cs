@@ -13,8 +13,9 @@
 				for (int j = 0; j < str.Length; j++)
 				{
 					stream.WriteByte((byte)str[j]);
-					stream.WriteByte((byte)'\n');
 				}
+
+				stream.WriteByte((byte)'\n');
 			}
 		}
 	}
