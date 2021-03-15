@@ -208,7 +208,7 @@ namespace Lucida.FlapStacks.Platform.Wings
 
 		public override void WriteWord(Value value)
 		{
-			Emit(new );
+			Emit(new RawWordInst(value));
 		}
 
 		public override void Xor()
