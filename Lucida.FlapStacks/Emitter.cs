@@ -349,6 +349,18 @@
 			WriteByte((byte)value);
 		}
 
+		public abstract void WriteWord(Value value);
+
+		public void WriteWord(ulong value)
+		{
+			WriteWord(new Constant(value));
+		}
+
+		public void WriteWord(long value)
+		{
+			WriteWord((ulong)value);
+		}
+
 		/// <summary>
 		/// Stack: Argument{0...Args-1} -> Offset{Any}
 		/// </summary>
