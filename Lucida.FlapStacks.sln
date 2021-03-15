@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lucida.FlapStacks.Platform.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lucida.FlapStacks.Plugins.NuGet", "Lucida.FlapStacks.Plugins.NuGet\Lucida.FlapStacks.Plugins.NuGet.csproj", "{5A5C7493-61BB-44E7-8DCF-8AB2C6985F14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lucida.FlapStacks.Platform.CKrab", "Lucida.FlapStacks.Platform.CKrab\Lucida.FlapStacks.Platform.CKrab.csproj", "{6A3ADAC3-83BE-4CC3-9C4D-FA06DBD77A81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lucida.FlapStacks.Platform.URCL", "Lucida.FlapStacks.Platform.URCL\Lucida.FlapStacks.Platform.URCL.csproj", "{BACA6354-8780-4D94-B775-6726284A3F8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +47,10 @@ Global
 		{5A5C7493-61BB-44E7-8DCF-8AB2C6985F14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A5C7493-61BB-44E7-8DCF-8AB2C6985F14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A5C7493-61BB-44E7-8DCF-8AB2C6985F14}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6A3ADAC3-83BE-4CC3-9C4D-FA06DBD77A81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6A3ADAC3-83BE-4CC3-9C4D-FA06DBD77A81}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6A3ADAC3-83BE-4CC3-9C4D-FA06DBD77A81}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6A3ADAC3-83BE-4CC3-9C4D-FA06DBD77A81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BACA6354-8780-4D94-B775-6726284A3F8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BACA6354-8780-4D94-B775-6726284A3F8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BACA6354-8780-4D94-B775-6726284A3F8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BACA6354-8780-4D94-B775-6726284A3F8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
