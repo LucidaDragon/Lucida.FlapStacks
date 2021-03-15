@@ -1,14 +1,14 @@
 ﻿namespace Lucida.FlapStacks.Platform.Wings.Instructions
 {
-	public class RawInst : Instruction
+	public class RawByteInst : Instruction
 	{
 		public override string Keyword => "db";
 
 		protected override int ArgumentCount => 1;
 
-		public RawInst() { }
+		public RawByteInst() { }
 
-		public RawInst(byte value)
+		public RawByteInst(byte value)
 		{
 			Arguments[0] = new Constant(value);
 		}
@@ -20,7 +20,7 @@
 
 		protected override Instruction CreateNew()
 		{
-			return new RawInst();
+			return new RawByteInst();
 		}
 	}
 }

@@ -203,7 +203,12 @@ namespace Lucida.FlapStacks.Platform.Wings
 
 		public override void WriteByte(byte value)
 		{
-			Emit(new RawInst(value));
+			Emit(new RawByteInst(value));
+		}
+
+		public override void WriteWord(Value value)
+		{
+			Emit(new );
 		}
 
 		public override void Xor()

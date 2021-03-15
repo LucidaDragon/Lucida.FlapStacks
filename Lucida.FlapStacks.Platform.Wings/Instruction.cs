@@ -36,7 +36,7 @@ namespace Lucida.FlapStacks.Platform.Wings
 			new OrInst(),
 			new PopInst(),
 			new PushInst(),
-			new RawInst(),
+			new RawByteInst(),
 			new RemInst(),
 			new RshInst(),
 			new SbbInst(),
