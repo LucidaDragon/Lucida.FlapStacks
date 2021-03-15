@@ -110,7 +110,7 @@ namespace Lucida.FlapStacks.Platform.Wings
 
 				if (commentIndex >= 0)
 				{
-					line = line.Substring(commentIndex);
+					line = line.Substring(0, commentIndex);
 				}
 
 				if (line.Length > 0)
