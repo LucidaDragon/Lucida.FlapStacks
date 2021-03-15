@@ -2,10 +2,23 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseExpression>CC-BY-SA-4.0</PackageLicenseExpression>
+    <Description>The URCL source plugin for FlapStacks.</Description>
+    <PackageIcon>FlapStacks.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/LucidaDragon/Lucida.FlapStacks</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/LucidaDragon/Lucida.FlapStacks</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Lucida.FlapStacks\Lucida.FlapStacks.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Lucida.FlapStacks\FlapStacks.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

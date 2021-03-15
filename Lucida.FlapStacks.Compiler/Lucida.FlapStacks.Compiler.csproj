@@ -7,8 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lucida.FlapStacks.Platform.URCL\Lucida.FlapStacks.Platform.URCL.csproj" />
-    <ProjectReference Include="..\Lucida.FlapStacks.Platform.x86_16\Lucida.FlapStacks.Platform.x86_16.csproj" />
     <ProjectReference Include="..\Lucida.FlapStacks.Plugins.NuGet\Lucida.FlapStacks.Plugins.NuGet.csproj" />
     <ProjectReference Include="..\Lucida.FlapStacks.Plugins\Lucida.FlapStacks.Plugins.csproj" />
   </ItemGroup>
