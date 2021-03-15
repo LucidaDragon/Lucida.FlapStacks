@@ -26,7 +26,7 @@ namespace Lucida.FlapStacks.Compiler
 
 				if (arg.StartsWith('-') && arg.Length > 1)
 				{
-					arg = arg.Substring(1);
+					arg = arg[1..];
 					var subArgs = GetSubArgs(ref i, args);
 					var handled = false;
 

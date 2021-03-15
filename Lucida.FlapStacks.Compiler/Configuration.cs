@@ -54,7 +54,7 @@ namespace Lucida.FlapStacks.Compiler
 
 				SourceParser.EmitTo(TargetEmitter);
 
-				for (int i = Devices.Count - 1; i >= 0; i++)
+				for (int i = Devices.Count - 1; i >= 0; i--)
 				{
 					Devices[i].EndUse(TargetEmitter);
 				}
