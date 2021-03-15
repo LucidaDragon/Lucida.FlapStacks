@@ -16,17 +16,14 @@ namespace Lucida.FlapStacks.Platform.x86_16.Devices
 
 			e.StartOffset = 0x7C00;
 
-			e.Push(EndLocation);
-			e.Push(LoadLocation);
-			e.Subtract();
-			e.Push(new Constant(0x0200));
-			e.Add();
-			e.Pop(Register.AX);
-			e.Push(new Constant(0x0002));
-			e.Pop(Register.CX);
+			e.Emit(new Imm16Op(Register.AX, EndLocation));
+			e.Emit(new Imm16Op(Register.BX, LoadLocation));
+			e.Emit(new SubOp(Register.AX, Register.BX));
+			e.Emit(new Imm16Op(Register.BX, 0x0200));
+			e.Emit(new AddOp(Register.AX, Register.BX));
+			e.Emit(new Imm16Op(Register.CX, 0x0002));
 			e.Emit(new LowOp(Register.DX));
-			e.Push(LoadLocation);
-			e.Pop(Register.BX);
+			e.Emit(new Imm16Op(Register.BX, LoadLocation));
 			e.Interrupt(0x13);
 			e.Push(LoadLocation);
 			e.Goto();

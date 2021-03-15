@@ -1,4 +1,5 @@
 ﻿using Lucida.FlapStacks.Platform.x86_16.Ops;
+using Lucida.FlapStacks.Platform.x86_16.Optimizers;
 using System;
 
 namespace Lucida.FlapStacks.Platform.x86_16
@@ -23,6 +24,17 @@ namespace Lucida.FlapStacks.Platform.x86_16
 			}
 		}
 		public List<Op> Operations { get; } = new List<Op>();
+
+		private readonly Optimizer[] Optimizations = new Optimizer[]
+		{
+			new PushFollowedByPop(),
+			new PushFollowedByReturn(),
+			new DuplicateWithPeek(),
+			new LoadFromFixedAddress(),
+			new StoreToFixedAddress(),
+			new MoveToSelf(),
+			new RedundantStackSave()
+		};
 
 		public override void Add()
 		{
@@ -176,7 +188,6 @@ namespace Lucida.FlapStacks.Platform.x86_16
 		{
 			Pop(Register.CX);
 			Pop(Register.AX);
-			Emit(new LowOp(Register.CX));
 			Emit(new LshOp(Register.AX));
 			Push(Register.AX);
 		}
@@ -185,7 +196,6 @@ namespace Lucida.FlapStacks.Platform.x86_16
 		{
 			Pop(Register.BX);
 			Emit(new Imm8Op(Register.CX, 1));
-			Emit(new LowOp(Register.CX));
 			Emit(new LshOp(Register.BX));
 			Emit(new LoadOp(Register.BX));
 			Push(Register.BX);
@@ -194,7 +204,6 @@ namespace Lucida.FlapStacks.Platform.x86_16
 		public override void LoadStack()
 		{
 			Pop(Register.AX);
-			Emit(new LowOp(Register.CX));
 			Emit(new Imm8Op(Register.CX, 1));
 			Emit(new LshOp(Register.AX));
 			Emit(new MovOp(Register.BX, Register.BP));
@@ -308,13 +317,26 @@ namespace Lucida.FlapStacks.Platform.x86_16
 		{
 			Pop(Register.CX);
 			Pop(Register.AX);
-			Emit(new LowOp(Register.CX));
 			Emit(new RshOp(Register.AX));
 			Push(Register.AX);
 		}
 
 		public override void Save(Stream stream)
 		{
+			for (int i = 0; i < Operations.Count; i++)
+			{
+				for (int j = 0; j < Optimizations.Length; j++)
+				{
+					var optimizer = Optimizations[j];
+
+					if ((Operations.Count - i) >= optimizer.MinLength && optimizer.Apply(Operations, i))
+					{
+						i = 0;
+						break;
+					}
+				}
+			}
+
 			for (int i = 0; i < Operations.Count; i++)
 			{
 				var op = Operations[i];
@@ -332,7 +354,6 @@ namespace Lucida.FlapStacks.Platform.x86_16
 		{
 			Pop(Register.BX);
 			Emit(new Imm8Op(Register.CX, 1));
-			Emit(new LowOp(Register.CX));
 			Emit(new LshOp(Register.BX));
 			Pop(Register.AX);
 			Emit(new StoreOp(Register.AX));
@@ -341,7 +362,6 @@ namespace Lucida.FlapStacks.Platform.x86_16
 		public override void StoreStack()
 		{
 			Pop(Register.AX);
-			Emit(new LowOp(Register.CX));
 			Emit(new Imm8Op(Register.CX, 1));
 			Emit(new LshOp(Register.AX));
 			Emit(new MovOp(Register.BX, Register.BP));
@@ -400,6 +420,11 @@ namespace Lucida.FlapStacks.Platform.x86_16
 		public override void WriteByte(byte value)
 		{
 			Emit(new DataByteOp(value));
+		}
+
+		public override void WriteWord(Value value)
+		{
+			Emit(new DataWordOp(value));
 		}
 
 		public override void Xor()

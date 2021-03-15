@@ -17,7 +17,7 @@ namespace Lucida.FlapStacks.Platform.x86_16
 
 		public override ulong Get()
 		{
-			return Target.GetAddress(Location) + Target.StartOffset;
+			return Target.GetAddress(Location);
 		}
 	}
 }
