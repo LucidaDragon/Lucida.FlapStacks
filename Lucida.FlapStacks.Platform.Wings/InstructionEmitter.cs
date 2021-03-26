@@ -216,6 +216,31 @@ namespace Lucida.FlapStacks.Platform.Wings
 			Emit(new XorInst());
 		}
 
+		public override void Cores()
+		{
+			Emit(new CoresInst());
+		}
+
+		public override void Core()
+		{
+			Emit(new CoreInst());
+		}
+
+		public override void Join()
+		{
+			Emit(new JoinInst());
+		}
+
+		public override void Start()
+		{
+			Emit(new StartInst());
+		}
+
+		public override void Stop()
+		{
+			Emit(new StopInst());
+		}
+
 		public void Emit(Instruction instruction)
 		{
 			Instructions.Add(instruction);
