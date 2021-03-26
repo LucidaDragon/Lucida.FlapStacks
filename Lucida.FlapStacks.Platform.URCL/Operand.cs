@@ -10,5 +10,7 @@
 		public abstract void Push(Emitter e);
 		public abstract void Pop(Emitter e);
 		public abstract string GetString();
+
+		public virtual bool Validate(Parser parser) => true;
 	}
 }

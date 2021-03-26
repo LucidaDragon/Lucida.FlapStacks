@@ -34,7 +34,7 @@
 
 		protected abstract void EmitCore(UrclConfig config, Emitter e);
 
-		public virtual Instruction Create(UrclConfig config, string keyword, Operand[] operands)
+		public virtual Instruction Create(Parser parser, UrclConfig config, string keyword, Operand[] operands)
 		{
 			var result = CreateNew(keyword);
 
@@ -79,7 +79,7 @@
 			return Keyword.ToLower() == keyword.ToLower();
 		}
 
-		public string GetString()
+		public virtual string GetString()
 		{
 			return $"{Keyword} {string.Join(", ", GetValueStrings(Operands))}";
 		}
@@ -89,7 +89,7 @@
 		/// </summary>
 		protected void LoadCarry(Emitter e)
 		{
-			e.Push(new Constant(1));
+			e.Push(new Constant(0));
 			e.LoadHeap();
 		}
 
@@ -116,7 +116,7 @@
 		/// </summary>
 		protected void StoreCarry(Emitter e)
 		{
-			e.Push(new Constant(1));
+			e.Push(new Constant(0));
 			e.StoreHeap();
 		}
 

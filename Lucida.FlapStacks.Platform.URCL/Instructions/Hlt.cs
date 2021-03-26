@@ -13,10 +13,8 @@
 
 		protected override void EmitCore(UrclConfig config, Emitter e)
 		{
-			var loop = e.CreateLabel();
-			e.MarkLabel(loop);
-			e.Push(loop);
-			e.Goto();
+			e.Core();
+			e.Stop();
 		}
 	}
 }

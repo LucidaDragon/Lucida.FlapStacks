@@ -1,29 +1,23 @@
-﻿namespace Lucida.FlapStacks.Platform.URCL.Instructions
+﻿namespace Lucida.FlapStacks.Platform.URCL.Instructions.Multicore
 {
-	public class Bzn : Instruction
+	public class Start : Instruction
 	{
-		public override string Keyword => "bzn";
+		public override string Keyword => "start";
 
 		protected override int OperandCount => 2;
 
 		protected override Instruction CreateNew(string keyword)
 		{
-			return new Bzn();
+			return new Start();
 		}
 
 		protected override void EmitCore(UrclConfig config, Emitter e) { }
 
 		public override void Emit(UrclConfig config, Emitter e)
 		{
-			Operands[1].Push(e);
 			Operands[0].Push(e);
-
-			var onFalse = e.CreateLabel();
-			e.Push(onFalse);
-
-			e.BranchNotZero();
-
-			e.MarkLabel(onFalse);
+			Operands[1].Push(e);
+			e.Start();
 		}
 	}
 }

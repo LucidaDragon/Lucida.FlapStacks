@@ -44,6 +44,62 @@ namespace Lucida.FlapStacks.Platform.URCL.Operands
 				operand = new Immediate(binValue);
 				return true;
 			}
+			else if (str.StartsWith("'") && str.EndsWith("'") && str.Length > 2)
+			{
+				str = str.Substring(1, str.Length - 2);
+
+				if (str.Length == 1)
+				{
+					operand = new Immediate(str[0]);
+					return true;
+				}
+				else if (str.StartsWith("\\") && str.Length > 1)
+				{
+					if (str.Length == 2)
+					{
+						switch (str[1])
+						{
+							case 'a':
+								operand = new Immediate('\a');
+								break;
+							case 'b':
+								operand = new Immediate('\b');
+								break;
+							case 'e':
+								operand = new Immediate(0x1B);
+								break;
+							case 'f':
+								operand = new Immediate('\f');
+								break;
+							case 'n':
+								operand = new Immediate('\n');
+								break;
+							case 'r':
+								operand = new Immediate('\r');
+								break;
+							case 't':
+								operand = new Immediate('\t');
+								break;
+							case 'v':
+								operand = new Immediate('\v');
+								break;
+							default:
+								operand = new Immediate(str[1]);
+								break;
+						}
+
+						return true;
+					}
+					else if (str.Length > 2 && str[1] == 'u' && TryParseHex(str.Substring(2), out ulong charHex))
+					{
+						operand = new Immediate(charHex);
+						return true;
+					}
+				}
+
+				operand = null;
+				return false;
+			}
 			else if (long.TryParse(str, out long signedValue))
 			{
 				operand = new Immediate(signedValue);
@@ -81,7 +137,7 @@ namespace Lucida.FlapStacks.Platform.URCL.Operands
 				}
 				else if (c >= 'A' && c <= 'F')
 				{
-					result |= c - ((ulong)'A' + 10);
+					result |= (c - (ulong)'A') + 10;
 				}
 				else
 				{

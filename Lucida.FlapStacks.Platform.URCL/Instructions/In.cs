@@ -12,5 +12,15 @@
 		}
 
 		protected override void EmitCore(UrclConfig config, Emitter e) { }
+
+		public override void Emit(UrclConfig config, Emitter e)
+		{
+			var next = e.CreateLabel();
+			e.Push(next);
+			e.Push(next);
+			e.ReadDevice(Operands[1].Value.Get());
+			e.MarkLabel(next);
+			Operands[0].Pop(e);
+		}
 	}
 }

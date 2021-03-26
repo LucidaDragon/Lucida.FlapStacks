@@ -8,7 +8,7 @@
 
 		protected override Instruction CreateNew(string keyword)
 		{
-			return new Sub();
+			return new Dec();
 		}
 
 		protected override void EmitCore(UrclConfig config, Emitter e)
