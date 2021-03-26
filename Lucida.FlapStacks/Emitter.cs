@@ -12,6 +12,33 @@
 
 		public abstract void MarkLabel(Value label);
 
+		public virtual void Comment(string text) { }
+
+		/// <summary>
+		/// Stack: -> Count{1..}
+		/// </summary>
+		public abstract void Cores();
+
+		/// <summary>
+		/// Stack: -> Index{0..}
+		/// </summary>
+		public abstract void Core();
+
+		/// <summary>
+		/// Stack: Index{0..}, OnStart ->
+		/// </summary>
+		public abstract void Start();
+
+		/// <summary>
+		/// Stack: Index{0..} ->
+		/// </summary>
+		public abstract void Stop();
+
+		/// <summary>
+		/// Stack: Index{0..} ->
+		/// </summary>
+		public abstract void Join();
+
 		/// <summary>
 		/// Stack: Value1{Any}, Value2{Any} -> Result{Any}
 		/// </summary>
