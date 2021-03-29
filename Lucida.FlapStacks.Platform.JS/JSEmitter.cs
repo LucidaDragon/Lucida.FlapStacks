@@ -23,6 +23,7 @@
 		public const string Stack = Context + StackField;
 		public const string ExecField = ".exec";
 		public const string Exec = Context + ExecField;
+		public const string Locks = "locks";
 		public const string Heap = "heap";
 		public const string Contexts = "contexts";
 		public const string ExecuteCore = "ExecuteCore";
@@ -51,7 +52,7 @@
 		{
 			Emit(new ConstantStatement("<style>body { color: white; background-color: black; font-weight: 700; overflow-wrap: anywhere; }</style><script>"));
 			Emit(new DynamicStatement(vals => $"({Heap} = []).length = {vals[0].Get()}; {Heap}.fill(0);", new HeapSizeValue(this)));
-			Emit(new ConstantStatement($"{Contexts} = [];"));
+			Emit(new ConstantStatement($"{Contexts} = []; {Locks} = ({{}});"));
 			Emit(new DynamicStatement(vals => $"for (var i = 0; i < {vals[0].Get()}; i++) {{", new CoreCountValue(this)));
 			Emit(new ConstantStatement($"var {Context} = ({{}}); {A} = 0; {B} = 0; {C} = 0; {D} = 0; {BP} = 0; {I} = 0; {Stack} = []; {Exec} = (i == 0); {Contexts}[i] = {Context};\n}}"));
 
@@ -167,6 +168,11 @@
 		public void Log(string message)
 		{
 			Emit($"console.log(\"Core \" + {CoreIndex} + \": {message.Replace("\\", "\\\\").Replace("\"", "\\\"")}\")");
+		}
+
+		public override void Bits()
+		{
+			Emit(PushStack("32"));
 		}
 
 		public override void Add()
@@ -566,6 +572,26 @@
 			Begin();
 			Log(nameof(Join));
 			Emit(new ConstantStatement($"if ({Contexts}[{PeekStack()}]{ExecField}) {{ {I} -= 1; }} else {{ {PopStack()}; }}"));
+			End();
+		}
+
+		public override void Lock()
+		{
+			Begin();
+			Assign(C, PopStack());
+			Assign(B, PopStack());
+			Assign(A, PopStack());
+			var thisLock = Indexer(Locks, A);
+			Emit(new ConstantStatement($"if (isFinite({thisLock}) && !({Op(thisLock, "===", CoreIndex)})) {{ {I} = {Op(C, "-", "1")}; }} else {{ {Op(thisLock, "=", CoreIndex)}; {I} = {Op(B, "-", "1")}; }}"));
+			End();
+		}
+
+		public override void Unlock()
+		{
+			Begin();
+			Assign(A, PopStack());
+			var thisLock = Indexer(Locks, A);
+			Emit($"if (isFinite({thisLock}) && ({Op(thisLock, "===", CoreIndex)})) {Op(thisLock, "=", "undefined")}");
 			End();
 		}
 	}

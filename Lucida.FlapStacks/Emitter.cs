@@ -15,6 +15,11 @@
 		public virtual void Comment(string text) { }
 
 		/// <summary>
+		/// Stack: -> Size{1..64}
+		/// </summary>
+		public abstract void Bits();
+
+		/// <summary>
 		/// Stack: -> Count{1..}
 		/// </summary>
 		public abstract void Cores();
@@ -38,6 +43,16 @@
 		/// Stack: Index{0..} ->
 		/// </summary>
 		public abstract void Join();
+
+		/// <summary>
+		/// Stack: Target{Address}, OnSuccess{Address}, OnError{Address} ->
+		/// </summary>
+		public abstract void Lock();
+
+		/// <summary>
+		/// Stack: Target{Address} ->
+		/// </summary>
+		public abstract void Unlock();
 
 		/// <summary>
 		/// Stack: Value1{Any}, Value2{Any} -> Result{Any}
