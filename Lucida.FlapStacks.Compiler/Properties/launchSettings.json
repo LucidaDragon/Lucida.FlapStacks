@@ -2,7 +2,7 @@
   "profiles": {
     "Lucida.FlapStacks.Compiler": {
       "commandName": "Project",
-      "commandLineArgs": "-p Lucida.FlapStacks.Platform.URCL.dll Lucida.FlapStacks.Platform.x86_16.dll -d 0 boot -s urcl -i input.urcl -t 8086 -o data.bin"
+      "commandLineArgs": "-p Lucida.FlapStacks.Platform.URCL.dll Lucida.FlapStacks.Platform.JS.dll -s urcl -i input.urcl -t js -o output.html -d 0 text"
     }
   }
 }

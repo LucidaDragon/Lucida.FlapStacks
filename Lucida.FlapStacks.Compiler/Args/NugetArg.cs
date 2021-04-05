@@ -34,7 +34,14 @@ namespace Lucida.FlapStacks.Compiler.Args
 
 				for (int j = 0; j < plugins.Length; j++)
 				{
-					configuration.Plugins.Add(Importer.ImportDll(plugins[j]));
+					try
+					{
+						configuration.Plugins.Add(Importer.ImportDll(plugins[j]));
+					}
+					catch (Exception ex)
+					{
+						throw new Exception($"Failed to load plugin \"{plugins[j]}\": \"{ex.Message}\"");
+					}
 				}
 			}
 
