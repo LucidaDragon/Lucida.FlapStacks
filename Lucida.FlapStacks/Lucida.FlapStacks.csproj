@@ -9,6 +9,7 @@
 		<RepositoryUrl>https://github.com/LucidaDragon/Lucida.FlapStacks</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/LucidaDragon/Lucida.FlapStacks</PackageProjectUrl>
 		<Version>1.0.2</Version>
+		<Authors>LucidaDragon</Authors>
 	</PropertyGroup>
 
 	<ItemGroup>
