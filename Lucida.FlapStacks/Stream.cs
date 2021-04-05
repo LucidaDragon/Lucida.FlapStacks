@@ -8,6 +8,39 @@
 		public abstract void WriteByte(byte value);
 		public abstract byte ReadByte();
 
+		public string ReadLine()
+		{
+			var buffer = new List<char>();
+
+			while (CanRead)
+			{
+				var c = (char)ReadByte();
+
+				if (c == '\n' || c == '\r')
+				{
+					break;
+				}
+				else
+				{
+					buffer.Add(c);
+				}
+			}
+
+			return new string(buffer.ToArray());
+		}
+
+		public string ReadToEnd()
+		{
+			var buffer = new List<char>();
+
+			while (CanRead)
+			{
+				buffer.Add((char)ReadByte());
+			}
+
+			return new string(buffer.ToArray());
+		}
+
 		public void WriteByte(sbyte value)
 		{
 			WriteByte((byte)value);

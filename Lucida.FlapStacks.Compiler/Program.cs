@@ -8,8 +8,17 @@ namespace Lucida.FlapStacks.Compiler
 
 		static void Main(string[] args)
 		{
-			if (!ConfigureArguments(args))
+			try
 			{
+				if (!ConfigureArguments(args))
+				{
+					Environment.Exit(1);
+					return;
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.Error.WriteLine(ex.Message);
 				Environment.Exit(1);
 				return;
 			}

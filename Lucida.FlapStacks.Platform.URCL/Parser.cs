@@ -1,7 +1,9 @@
-﻿using Lucida.FlapStacks.Platform.URCL.Operands;
+﻿using Lucida.FlapStacks.Platform.URCL.Instructions;
+using Lucida.FlapStacks.Platform.URCL.Operands;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Lucida.FlapStacks.Platform.URCL
 {
@@ -14,6 +16,7 @@ namespace Lucida.FlapStacks.Platform.URCL
 
 		private string[] Lines = new string[0];
 		public readonly Dictionary<string, Label> Labels = new Dictionary<string, Label>();
+		public readonly Dictionary<string, Operand> Variables = new Dictionary<string, Operand>();
 
 		public Parser()
 		{
@@ -22,7 +25,8 @@ namespace Lucida.FlapStacks.Platform.URCL
 				new Immediate(),
 				new LabelRef(this),
 				new Port(),
-				new Register()
+				new Register(),
+				new PragmaVar()
 			};
 
 			Instructions = GetObjects<Instruction>();
@@ -56,7 +60,7 @@ namespace Lucida.FlapStacks.Platform.URCL
 
 				if (Label.TryParse(row.Keyword, out string name))
 				{
-					Labels[name].Mark(emitter);
+					instructions[i] = new MarkLabel(Labels[name]);
 				}
 				else
 				{
@@ -72,7 +76,14 @@ namespace Lucida.FlapStacks.Platform.URCL
 
 			for (int i = 0; i < instructions.Length; i++)
 			{
-				instructions[i]?.Emit(config, emitter);
+				var inst = instructions[i];
+
+				if (inst != null)
+				{
+					if (!(inst is MarkLabel)) emitter.Comment(inst.GetString());
+					inst.Emit(config, emitter);
+					if (inst is MarkLabel) emitter.Comment(inst.GetString());
+				}
 			}
 		}
 
@@ -96,13 +107,18 @@ namespace Lucida.FlapStacks.Platform.URCL
 
 			if (operands == null) return null;
 
+			for (int i = 0; i < operands.Length; i++)
+			{
+				operands[i].Validate(this);
+			}
+
 			for (int i = 0; i < Instructions.Length; i++)
 			{
 				var type = Instructions[i];
 
 				if (type.IsValid(row.Keyword, operands.Length))
 				{
-					return type.Create(config, row.Keyword, operands);
+					return type.Create(this, config, row.Keyword, operands);
 				}
 			}
 
@@ -147,18 +163,18 @@ namespace Lucida.FlapStacks.Platform.URCL
 
 				if (line.Length > 0)
 				{
-					var parts = line.Replace(",", " ").Replace("  ", " ").Trim().Split(' ');
+					var parts = Regex.Matches(line.Replace(",", " ").Replace("  ", " ").Trim(), @"[^\s']+|'(([^'\\]|(\\.))*)'");
 
-					if (parts.Length > 0)
+					if (parts.Count > 0)
 					{
-						var args = new string[parts.Length - 1];
+						var args = new string[parts.Count - 1];
 
 						for (int j = 0; j < args.Length; j++)
 						{
-							args[j] = parts[j + 1];
+							args[j] = parts[j + 1].Value;
 						}
 
-						result.Add(new Row(parts[0], args));
+						result.Add(new Row(parts[0].Value, args));
 					}
 				}
 			}

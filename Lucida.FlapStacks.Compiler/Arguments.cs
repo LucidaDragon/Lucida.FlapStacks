@@ -15,7 +15,9 @@ namespace Lucida.FlapStacks.Compiler
 			new ParserArg(),
 			new PluginArg(),
 			new SourceArg(),
-			new TargetArg()
+			new TargetArg(),
+			new PreArg(),
+			new PostArg()
 		};
 	}
 }

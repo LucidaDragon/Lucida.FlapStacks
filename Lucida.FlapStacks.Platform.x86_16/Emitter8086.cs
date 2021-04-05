@@ -447,5 +447,68 @@ namespace Lucida.FlapStacks.Platform.x86_16
 			Emit(jumpFalse);
 			Emit(new JumpOp(Register.CX));
 		}
+
+		public override void Cores()
+		{
+			Push(1);
+		}
+
+		public override void Core()
+		{
+			Push(0);
+		}
+
+		public override void Start()
+		{
+			Pop(Register.BX);
+			Pop(Register.AX);
+			Emit(new OrOp(Register.AX, Register.AX));
+			var gotoInst = new JumpOp(Register.BX);
+			Emit(new JumpConditionalOp(Condition.NotZero, (sbyte)gotoInst.GetSize(this)));
+			Emit(gotoInst);
+		}
+
+		public override void Stop()
+		{
+			Pop(Register.AX);
+			Emit(new OrOp(Register.AX, Register.AX));
+			var setAX = new Imm16Op(Register.AX, 0x5307);
+			var setBX = new XorOp(Register.BX, Register.BX);
+			var setCX = new Imm16Op(Register.CX, 3);
+			var callInt = new InterruptOp(0x15);
+			var size = setAX.GetSize(this) + setBX.GetSize(this) + setCX.GetSize(this) + callInt.GetSize(this);
+			Emit(new JumpConditionalOp(Condition.NotZero, (sbyte)size));
+			Emit(setAX);
+			Emit(setBX);
+			Emit(setCX);
+			Emit(callInt);
+		}
+
+		public override void Join()
+		{
+			var label = CreateLabel();
+			Pop(Register.AX);
+			Emit(new Imm16Op(Register.AX, label));
+			MarkLabel(label);
+			Emit(new JumpOp(Register.AX));
+		}
+
+		public override void Lock()
+		{
+			Pop(Register.AX);
+			Pop(Register.BX);
+			Pop(Register.AX);
+			Emit(new JumpOp(Register.BX));
+		}
+
+		public override void Unlock()
+		{
+			Pop(Register.AX);
+		}
+
+		public override void Bits()
+		{
+			Push(16);
+		}
 	}
 }

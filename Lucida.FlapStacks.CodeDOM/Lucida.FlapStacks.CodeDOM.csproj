@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>LucidaDragon</Authors>
+    <Description>A high-level IL generation library for FlapStacks.</Description>
+    <PackageLicenseExpression>CC-BY-SA-4.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/LucidaDragon/Lucida.FlapStacks</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/LucidaDragon/Lucida.FlapStacks</RepositoryUrl>
+    <PackageIcon>FlapStacks.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lucida.FlapStacks\Lucida.FlapStacks.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Lucida.FlapStacks\FlapStacks.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

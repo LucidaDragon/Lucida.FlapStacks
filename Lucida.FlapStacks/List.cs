@@ -28,7 +28,9 @@
 
 		public int Capacity => Store.Length;
 
-		private T[] Store = new T[1];
+		private const int MinSize = 1024;
+
+		private T[] Store = new T[MinSize];
 
 		public void Add(T item)
 		{
@@ -50,10 +52,16 @@
 
 			Count--;
 
-			if (Count < Capacity / 2)
+			if (Count < Capacity / 2 && Capacity > MinSize)
 			{
 				Shrink();
 			}
+		}
+
+		public void Clear()
+		{
+			Count = 0;
+			Store = new T[MinSize];
 		}
 
 		public T[] ToArray()

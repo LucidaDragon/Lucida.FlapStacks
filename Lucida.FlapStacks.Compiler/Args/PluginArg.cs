@@ -1,4 +1,5 @@
 ﻿using Lucida.FlapStacks.Plugins;
+using System;
 
 namespace Lucida.FlapStacks.Compiler.Args
 {
@@ -14,7 +15,14 @@ namespace Lucida.FlapStacks.Compiler.Args
 		{
 			for (int i = 0; i < args.Length; i++)
 			{
-				configuration.Plugins.Add(Importer.ImportDll(args[i]));
+				try
+				{
+					configuration.Plugins.Add(Importer.ImportDll(args[i]));
+				}
+				catch (Exception ex)
+				{
+					throw new Exception($"Failed to load plugin \"{args[i]}\": \"{ex.Message}\"");
+				}
 			}
 
 			return true;

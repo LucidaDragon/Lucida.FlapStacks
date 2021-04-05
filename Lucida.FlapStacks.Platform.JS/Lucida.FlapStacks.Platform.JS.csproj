@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>LucidaDragon</Authors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>The JavaScript target plugin for FlapStacks.</Description>
+    <PackageLicenseExpression>CC-BY-SA-4.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/LucidaDragon/Lucida.FlapStacks</PackageProjectUrl>
+    <PackageIcon>FlapStacks.png</PackageIcon>
+    <RepositoryUrl>https://github.com/LucidaDragon/Lucida.FlapStacks</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lucida.FlapStacks\Lucida.FlapStacks.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Lucida.FlapStacks\FlapStacks.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

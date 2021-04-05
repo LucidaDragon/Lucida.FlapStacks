@@ -8,6 +8,7 @@ namespace Lucida.FlapStacks.Compiler
 		public List<Plugin> Plugins { get; private set; } = new List<Plugin>();
 		public List<Action> OnLoad { get; private set; } = new List<Action>();
 		public List<Action> OnPreCompile { get; private set; } = new List<Action>();
+		public List<Action> OnPostCompile { get; private set; } = new List<Action>();
 
 		public Stream Source { get; set; }
 		public Plugin SourcePlatform { get; set; }
@@ -60,6 +61,13 @@ namespace Lucida.FlapStacks.Compiler
 				}
 
 				TargetEmitter.Save(Target);
+
+				if (OnPostCompile.Count > 0) Console.WriteLine($"Successfully compiled in {Environment.TickCount64 - start}ms.");
+
+				for (int i = 0; i < OnPostCompile.Count; i++)
+				{
+					OnPostCompile[i]();
+				}
 
 				Console.WriteLine($"Successfully completed in {Environment.TickCount64 - start}ms.");
 

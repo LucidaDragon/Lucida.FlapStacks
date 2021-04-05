@@ -26,11 +26,11 @@ namespace Lucida.FlapStacks.Compiler
 		public override void WriteByte(byte value)
 		{
 			Stream.WriteByte(value);
-			Stream.Flush();
 		}
 
 		public void Dispose()
 		{
+			Stream.Flush();
 			if (Stream != null) Stream.Dispose();
 		}
 	}

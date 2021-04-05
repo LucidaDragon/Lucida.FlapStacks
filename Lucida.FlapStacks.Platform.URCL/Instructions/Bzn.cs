@@ -11,7 +11,9 @@
 			return new Bzn();
 		}
 
-		protected override void EmitCore(UrclConfig config, Emitter e)
+		protected override void EmitCore(UrclConfig config, Emitter e) { }
+
+		public override void Emit(UrclConfig config, Emitter e)
 		{
 			Operands[1].Push(e);
 			Operands[0].Push(e);

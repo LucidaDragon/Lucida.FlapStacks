@@ -1,52 +1,25 @@
-﻿using Lucida.FlapStacks.Platform.Wings.Instructions;
+﻿using System;
 
 namespace Lucida.FlapStacks.Platform.Wings
 {
 	public abstract class Instruction
 	{
-		public static readonly Instruction[] Instructions = new Instruction[]
+		public static readonly Instruction[] Instructions;
+
+		static Instruction()
 		{
-			new AdcInst(),
-			new AddcInst(),
-			new AddInst(),
-			new AndInst(),
-			new BoolInst(),
-			new BppopInst(),
-			new BppushInst(),
-			new BpsetInst(),
-			new CallInst(),
-			new DivInst(),
-			new DupInst(),
-			new GotoInst(),
-			new HeapInst(),
-			new IfeInst(),
-			new IfsgInst(),
-			new IfslInst(),
-			new IfugInst(),
-			new IfulInst(),
-			new IfzInst(),
-			new LodInst(),
-			new LodsInst(),
-			new LshInst(),
-			new MarkLabelInst(null),
-			new MulInst(),
-			new NegInst(),
-			new NopInst(),
-			new NotInst(),
-			new OrInst(),
-			new PopInst(),
-			new PushInst(),
-			new RawByteInst(),
-			new RemInst(),
-			new RshInst(),
-			new SbbInst(),
-			new StrInst(),
-			new StrsInst(),
-			new SubbInst(),
-			new SubInst(),
-			new SwapInst(),
-			new XorInst()
-		};
+			var insts = new List<Instruction>();
+
+			foreach (var type in typeof(Instruction).Assembly.GetTypes())
+			{
+				if (!type.IsAbstract && typeof(Instruction).IsAssignableFrom(type))
+				{
+					insts.Add((Instruction)Activator.CreateInstance(type));
+				}
+			}
+
+			Instructions = insts.ToArray();
+		}
 
 		public abstract string Keyword { get; }
 		public Value[] Arguments { get; }

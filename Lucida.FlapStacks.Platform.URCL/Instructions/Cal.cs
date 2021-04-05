@@ -16,7 +16,9 @@
 		public override void Emit(UrclConfig config, Emitter e)
 		{
 			Operands[0].Push(e);
+			e.SetBasePointer();
 			e.Call();
+			e.SetBasePointer();
 		}
 	}
 }
